@@ -52,9 +52,6 @@ const routes: IRoutes[] = [
     name: "Home",
     onSidebar: true,
     sidebarOrder: 1,
-    children: [
-      { id: 201, path: "party", component: HomePage, name: "Home Party" },
-    ],
   },
   {
     id: 300,
@@ -105,10 +102,13 @@ export interface IRoutes {
   role?: string[];
   restrictTo?: string[];
   allowTo?: string[];
-  children?: Array<{
-    id: number;
-    path: string;
-    component: React.FC;
-    name: string;
-  }>;
+  children?: Array<IChildren>;
+}
+
+export interface IChildren {
+  id: number;
+  path: string;
+  component: React.FC;
+  name: string;
+  children?: Array<IChildren>;
 }

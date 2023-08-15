@@ -1,9 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { routesObjects } from ".";
-
-import { MainLayout, OnlyHeaderLayout } from "../components/layouts";
-import { NotFoundPage } from "../pages";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 const renderNestedRoutes = (route: any) => {
   if ("children" in route && Array.isArray(route.children)) {
@@ -18,6 +16,12 @@ const renderNestedRoutes = (route: any) => {
 };
 const router = createBrowserRouter(
   routesObjects.map((route) => {
+    if (route?.path === "*") {
+      return {
+        path: route?.path,
+        element: <route.component />,
+      };
+    }
     return {
       path: route?.path,
       element: route.isProtected ? (
@@ -35,6 +39,7 @@ const router = createBrowserRouter(
         {
           index: true,
           element: <route.component />,
+          errorElement: <ErrorBoundary />,
         },
         {
           path: "",
