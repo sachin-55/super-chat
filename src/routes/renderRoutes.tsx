@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { routesObjects } from ".";
-import ErrorBoundary from "../components/ErrorBoundary";
+import { ErrorBoundary } from "../components";
 
 const renderNestedRoutes = (route: any) => {
   if ("children" in route && Array.isArray(route.children)) {
