@@ -1,3 +1,5 @@
+import ITheme from "./theme.interface";
+
 export const breakpoints = {
   xxxsm: "20em", //320px
   xxsm: "22.5em", //360px
@@ -20,7 +22,67 @@ export const breakpointsDeviceWise = {
   xxlLaptop: "96em", //1536px
 };
 
-const theme = {
+export const fontFamily = {
+  helvetica: "Helvetica",
+  openSans: "Open-Sans",
+  poppins: "Poppins",
+  inconsolata: "Inconsolata",
+  inter: "Inter",
+  lato: "Lato",
+  roboto: "Roboto",
+  sansita: "Sansita",
+};
+export const fontSize = {
+  h0: "3em",
+  h1: "2.5em",
+  h2: "2em",
+  h3: "1.5em",
+  h4: "1.25em",
+  h5: "1em",
+  h6: "0.8em",
+  caption: "0.875em",
+  normal: "1em",
+};
+
+export const fontWeight = {
+  lightest: 100,
+  lighter: 200,
+  light: 300,
+  normal: 400,
+  strong: 600,
+  bold: 700,
+  bolder: 800,
+  dark: 900,
+};
+
+export const darkColors = {
+  coolBlack: "#002e63",
+  gray: "#666666",
+  dimGray: "#696969",
+  ebony: "#555d50",
+  davysGrey: "#555555",
+  charcoal: "#36454f",
+  charcoal2: "#444444",
+  darkCharcoal: "#333333",
+  outerSpace: "#414a4c",
+  raisinBlack: "#242124",
+  eerieBlack: "#1b1b1b",
+  licorice: "#1a1110",
+  black: "#000000",
+};
+export const lightColors = {
+  white: "#ffffff",
+  gray99: "#fcfcfc",
+  gainsboro: "#dbdbdb",
+  light: "#d7d0f2",
+  snow: "#fffafa",
+  seashell: "#FFF5EE",
+  ivory: "#FFFFF0",
+  whiteSmoke: "#f5f5f5",
+  boneWhite: "#f9f6ee",
+};
+
+const theme: ITheme = {
   main: {
     primary: "#9280D9",
     accent: "#F687B1",
@@ -36,19 +98,18 @@ const theme = {
     caption: "#666666",
     borderColor: "#dbdbdb",
     background: "#fdfdfd",
-
+    hard: {
+      primary: "#4E3E72",
+      accent: "#D4618B",
+      secondary: "#CFBF5A",
+      highlight: "#1F3C62",
+      warning: "#A96E1E",
+      caution: "#DDBF37",
+      danger: "#A8213B",
+      success: "#2E7441",
+      info: "#314E8A",
+    },
     soft: {
-      40: {
-        primary: "#4E3E72",
-        accent: "#D4618B",
-        secondary: "#CFBF5A",
-        highlight: "#1F3C62",
-        warning: "#A96E1E",
-        caution: "#DDBF37",
-        danger: "#A8213B",
-        success: "#2E7441",
-        info: "#314E8A",
-      },
       50: {
         primary: "#7C6ABE",
         accent: "#D982A9",
@@ -106,63 +167,11 @@ const theme = {
       },
     },
   },
-  light: {
-    white: "#ffffff",
-    gray99: "#fcfcfc",
-    gainsboro: "#dbdbdb",
-    light: "#d7d0f2",
-    snow: "#fffafa",
-    seashell: "#FFF5EE",
-    ivory: "#FFFFF0",
-    whiteSmoke: "#f5f5f5",
-    boneWhite: "#f9f6ee",
-  },
-  dark: {
-    coolBlack: "#002e63",
-    gray: "#666666",
-    dimGray: "#696969",
-    ebony: "#555d50",
-    davysGrey: "#555555",
-    charcoal: "#36454f",
-    charcoal2: "#444444",
-    darkCharcoal: "#333333",
-    outerSpace: "#414a4c",
-    raisinBlack: "#242124",
-    eerieBlack: "#1b1b1b",
-    licorice: "#1a1110",
-    black: "#000000",
-  },
-  fontFamily: {
-    helvetica: "Helvetica",
-    openSans: "Open-Sans",
-    poppins: "Poppins",
-    inconsolata: "Inconsolata",
-    inter: "Inter",
-    lato: "Lato",
-    roboto: "Roboto",
-    sansita: "Sansita",
-  },
-  fontSize: {
-    h0: "3em",
-    h1: "2.5em",
-    h2: "2em",
-    h3: "1.5em",
-    h4: "1.25em",
-    h5: "1em",
-    h6: "0.8em",
-    caption: "0.875em",
-    normal: "1em",
-  },
-  fontWeight: {
-    lightest: 100,
-    lighter: 200,
-    light: 300,
-    normal: 400,
-    bold: 600,
-    strong: 700,
-    bolder: 800,
-    dark: 900,
-  },
+  light: lightColors,
+  dark: darkColors,
+  fontFamily,
+  fontSize,
+  fontWeight,
   breakpoints,
   breakpointsDeviceWise,
 };

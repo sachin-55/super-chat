@@ -14,9 +14,14 @@ const Header = (props: Props) => {
 export default Header;
 
 const HeaderStyled = styled.div`
-  background: purple;
+  background: ${({ theme }) => theme.main.primary};
+  padding: 10px 30px;
+  font-size: ${({ theme }) => theme.fontSize.h3};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  letter-spacing: 2px;
 `;
 
 const LogoStyled = styled.div`
   color: #fff;
+  color: ${({ theme }) => theme.main.hard.primary};
 `;

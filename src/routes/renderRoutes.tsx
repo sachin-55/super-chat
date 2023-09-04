@@ -14,6 +14,7 @@ const renderNestedRoutes = (route: any) => {
     return null;
   }
 };
+
 const router = createBrowserRouter(
   routesObjects.map((route) => {
     if (route?.path === "*") {
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
     }
     return {
       path: route?.path,
+      errorElement: <ErrorBoundary />,
       element: route.isProtected ? (
         <ProtectedRoute
           allowed={route?.allowTo || []}
