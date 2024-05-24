@@ -1,6 +1,9 @@
 import React from "react";
 import { css, styled } from "styled-components";
 import { NestedColorKeys, getColorValue } from "../../theme/colors";
+import { ThemeType } from "../../theme";
+
+export type ButtonSizeType = "xsm" | "sm" | "md" | "lg" | "xl";
 
 type VariantType =
   | "solid"
@@ -16,10 +19,23 @@ interface IButtonProps {
   color?: NestedColorKeys;
   bgColor?: NestedColorKeys;
   rounded?: boolean;
+
+  width?: string;
+  height?: string;
+  fontSize?: keyof ThemeType["fontSize"];
+  fontFamily?: keyof ThemeType["fontFamily"];
+  fontWeight?: keyof ThemeType["fontWeights"];
+  padding?: string;
+  margin?: string;
 }
 
 interface IButtonComponentProps extends React.ComponentProps<"button"> {
   variant?: VariantType;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  type?: "submit" | "button" | "reset";
+
+  size?: ButtonSizeType;
 }
 
 const Button: React.FC<
@@ -30,6 +46,14 @@ const Button: React.FC<
   color,
   bgColor,
   rounded = true,
+  height,
+  width,
+  fontSize,
+  fontFamily,
+  fontWeight,
+  margin,
+  padding,
+  size,
   ...restProps
 }) => {
   return (
@@ -38,6 +62,14 @@ const Button: React.FC<
       color={color}
       bgColor={bgColor}
       rounded={rounded}
+      $height={height}
+      $width={width}
+      $fontSize={fontSize}
+      $fontFamily={fontFamily}
+      $fontWeight={fontWeight}
+      $margin={margin}
+      $padding={padding}
+      $size={size}
       {...restProps}
     >
       {children}
@@ -47,8 +79,53 @@ const Button: React.FC<
 
 export default Button;
 
-const ButtonStyled = styled.button<IButtonProps>`
-  height: 40px;
+type ButtonOptionType = {
+  height: string;
+  fontSize: keyof ThemeType["fontSize"];
+  padding: string;
+};
+const buttonSizes: Record<ButtonSizeType, ButtonOptionType> = {
+  xsm: {
+    height: "30px",
+    fontSize: "g_smallNormal",
+    padding: "6px 16px",
+  },
+  sm: {
+    height: "36px",
+    fontSize: "h_normal",
+    padding: "8px 20px",
+  },
+  md: {
+    height: "42px",
+    fontSize: "i_largeNormal",
+    padding: "10px 24px",
+  },
+  lg: {
+    height: "48px",
+    fontSize: "j_title",
+    padding: "12px 28px",
+  },
+  xl: {
+    height: "54px",
+    fontSize: "m_subheading",
+    padding: "14px 32px",
+  },
+};
+
+const ButtonStyled = styled.button<
+  IButtonProps & {
+    $width?: string;
+    $height?: string;
+    $fontSize?: keyof ThemeType["fontSize"];
+    $padding?: string;
+    $margin?: string;
+
+    $fontWeight?: keyof ThemeType["fontWeights"];
+    $fontFamily?: keyof ThemeType["fontFamily"];
+
+    $size?: ButtonSizeType;
+  }
+>`
   min-width: 100px;
   display: inline-flex;
   align-items: center;
@@ -60,6 +137,29 @@ const ButtonStyled = styled.button<IButtonProps>`
 
   ${({ variant, color, bgColor }) =>
     getVariantWiseCss(variant, color, bgColor)};
+
+  font-weight: ${({ theme, $fontWeight }) =>
+    $fontWeight ? theme?.fontWeights[$fontWeight] : theme?.fontWeights?.medium};
+
+  font-size: ${({ theme, $fontSize, $size }) =>
+    $fontSize
+      ? theme?.fontSize[$fontSize]
+      : $size
+      ? theme?.fontSize[buttonSizes[$size].fontSize]
+      : theme?.fontSize.h_normal};
+
+  font-family: ${({ theme, $fontFamily }) =>
+    $fontFamily
+      ? theme?.fontFamily[$fontFamily]
+      : theme?.fontFamily?.inconsolata};
+  margin: ${({ $margin }) => $margin};
+  padding: ${({ $padding, $size }) =>
+    $padding ? $padding : $size ? buttonSizes[$size].padding : "8px 20px"};
+  width: ${({ $width }) => $width};
+  height: ${({ $height, $size }) =>
+    $height ? $height : $size ? buttonSizes[$size].height : "40px"};
+  min-height: fit-content;
+  min-width: fit-content;
 `;
 
 const getVariantWiseCss = (
