@@ -170,3 +170,15 @@ type FilteredPaths<T, D extends number = 10> = [D] extends [never]
   : "";
 
 export type NestedColorKeys = FilteredPaths<ColorsType>;
+
+export const getColorValue = (
+  path: NestedColorKeys | undefined
+): string | undefined => {
+  if (!path) return undefined;
+  return path.split(".").reduce<string | undefined>((o, i) => {
+    if (o && typeof o === "object") {
+      return (o as any)[i];
+    }
+    return undefined;
+  }, colors as any);
+};

@@ -6,3 +6,8 @@ export { Button } from "./Button";
 export { Card } from "./Card";
 export { Input } from "./Input";
 export { Stack } from "./Stack";
+export { default as Flex } from "./Flex";
+export { default as Typography } from "./Typography";
+export { default as Divider } from "./Divider";
+export { default as Image } from "./Image";
+export { default as Avatar } from "./Avatar";
