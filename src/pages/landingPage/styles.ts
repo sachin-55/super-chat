@@ -10,6 +10,10 @@ export const LandingPageStyled = styled.div`
   justify-content: center;
 
   & h2 {
-    font-size: 3.5em;
+    font-size: 3em;
+    text-align: center;
+  }
+  & p {
+    text-align: center;
   }
 `;

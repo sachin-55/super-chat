@@ -19,7 +19,7 @@ const ErrorBoundary = (props: Props) => {
 export default ErrorBoundary;
 
 const ErrorBoundaryStyled = styled.div`
-  background: ${({ theme }) => theme?.main.soft[90].danger};
+  background: ${({ theme }) => theme?.colors.main.soft[90].danger};
   min-height: 100vh;
   display: flex;
   align-items: center;

@@ -1,6 +1,6 @@
 import React from "react";
 import { css, styled } from "styled-components";
-import ITheme from "../../theme/theme.interface";
+import { NestedColorKeys } from "../../theme/colors";
 
 type VariantType =
   | "solid"
@@ -13,8 +13,8 @@ type VariantType =
 
 interface IButtonProps {
   variant?: VariantType;
-  color?: string;
-  bgColor?: string;
+  color?: NestedColorKeys;
+  bgColor?: NestedColorKeys;
   rounded?: boolean;
 }
 
@@ -47,18 +47,14 @@ const Button: React.FC<
 
 export default Button;
 
-const ButtonStyled = styled.button<
-  {
-    theme: ITheme;
-  } & IButtonProps
->`
+const ButtonStyled = styled.button<IButtonProps>`
   height: 40px;
   min-width: 100px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: ${({ rounded }) => (rounded ? "20px" : "0px")};
-  box-shadow: 0px 0px 3px 0px ${({ theme }) => theme.dark.dimGray};
+  box-shadow: 0px 0px 3px 0px ${({ theme }) => theme?.dark?.dimGray};
   cursor: pointer;
   transition: all 0.3s;
 
@@ -68,40 +64,45 @@ const ButtonStyled = styled.button<
 
 const getVariantWiseCss = (
   variant: VariantType | undefined,
-  color: string | undefined,
-  bgColor: string | undefined
+  color: NestedColorKeys | undefined,
+  bgColor: NestedColorKeys | undefined
 ) => {
   switch (variant) {
     case "solid":
       return css`
-        border: 2px solid ${({ theme }) => color || theme.main.hard.primary};
-        background: ${({ theme }) => bgColor || theme.main.soft[60].primary};
-        color: ${({ theme }) => color || theme.light.snow};
+        border: 2px solid
+          ${({ theme }) => color || theme.colors.main.hard.primary};
+        background: ${({ theme }) =>
+          bgColor || theme.colors.main.soft[60].primary};
+        color: ${({ theme }) => color || theme.colors.light.snow};
         &:hover {
-          background: ${({ theme }) => color || theme.light.snow};
-          border: 2px solid ${({ theme }) => color || theme.main.hard.primary};
-          color: ${({ theme }) => bgColor || theme.main.hard.primary};
+          background: ${({ theme }) => color || theme.colors.light.snow};
+          border: 2px solid
+            ${({ theme }) => color || theme.colors.main.hard.primary};
+          color: ${({ theme }) => bgColor || theme.colors.main.hard.primary};
         }
       `;
     case "ghost":
       return css`
-        border: 2px solid ${({ theme }) => color || theme.main.hard.primary};
+        border: 2px solid
+          ${({ theme }) => color || theme.colors.main.hard.primary};
         background: transparent;
         color: ${({ theme }) => color || theme.dark?.charcoal};
         &:hover {
           border: 3px solid
-            ${({ theme }) => color || theme.main.soft[50].primary};
+            ${({ theme }) => color || theme.colors.main.soft[50].primary};
           font-weight: 600;
         }
       `;
     case "plain":
       return css`
         border: none;
-        background: ${({ theme }) => bgColor || theme.main.soft[60].primary};
-        color: ${({ theme }) => color || theme.light.snow};
+        background: ${({ theme }) =>
+          bgColor || theme.colors.main.soft[60].primary};
+        color: ${({ theme }) => color || theme.colors.light.snow};
         &:hover {
-          background: ${({ theme }) => color || theme.light.snow};
-          color: ${({ theme }) => bgColor || theme.main.hard.primary};
+          background: ${({ theme }) => color || theme.colors.light.snow};
+          color: ${({ theme }) => bgColor || theme.colors.main.hard.primary};
         }
       `;
     case "link":
@@ -120,35 +121,39 @@ const getVariantWiseCss = (
     case "tag":
       return css`
         border: none;
-        background: ${({ theme }) => bgColor || theme.main.soft[60].primary};
-        color: ${({ theme }) => color || theme.light.snow};
+        background: ${({ theme }) =>
+          bgColor || theme.colors.main.soft[60].primary};
+        color: ${({ theme }) => color || theme.colors.light.snow};
         padding: 4px 12px;
         min-width: auto;
         height: auto;
         &:hover {
           background: none;
-          border: 1px solid ${({ theme }) => color || theme.main.hard.primary};
-          color: ${({ theme }) => bgColor || theme.main.hard.primary};
+          border: 1px solid
+            ${({ theme }) => color || theme.colors.main.hard.primary};
+          color: ${({ theme }) => bgColor || theme.colors.main.hard.primary};
         }
       `;
     case "outline":
       return css`
-        border: 2px solid ${({ theme }) => color || theme.main.hard.primary};
-        background: ${({ theme }) => bgColor || theme.light.snow};
-        color: ${({ theme }) => color || theme.main.hard?.primary};
+        border: 2px solid
+          ${({ theme }) => color || theme.colors.main.hard.primary};
+        background: ${({ theme }) => bgColor || theme.colors.light.snow};
+        color: ${({ theme }) => color || theme.colors.main.hard?.primary};
         &:hover {
           border: 3px solid
-            ${({ theme }) => bgColor || theme.main.soft[50].primary};
+            ${({ theme }) => bgColor || theme.colors.main.soft[50].primary};
           font-weight: 600;
-          color: ${({ theme }) => bgColor || theme.light.snow};
-          background: ${({ theme }) => color || theme.main.soft[50].primary};
+          color: ${({ theme }) => bgColor || theme.colors.light.snow};
+          background: ${({ theme }) =>
+            color || theme.colors.main.soft[50].primary};
         }
       `;
     case "unstyled":
       return css`
         border: none;
         background: none;
-        color: ${({ theme }) => color || theme.main.hard?.primary};
+        color: ${({ theme }) => color || theme.colors.main.hard?.primary};
         padding: 0px;
         min-width: auto;
         height: auto;
@@ -156,13 +161,16 @@ const getVariantWiseCss = (
       `;
     default:
       return css`
-        border: 2px solid ${({ theme }) => color || theme.main.hard.primary};
-        background: ${({ theme }) => bgColor || theme.main.soft[60].primary};
-        color: ${({ theme }) => color || theme.light.snow};
+        border: 2px solid
+          ${({ theme }) => color || theme.colors.main.hard.primary};
+        background: ${({ theme }) =>
+          bgColor || theme.colors.main.soft[60].primary};
+        color: ${({ theme }) => color || theme.colors.light.snow};
         &:hover {
-          background: ${({ theme }) => bgColor || theme.main.soft[70].primary};
+          background: ${({ theme }) =>
+            bgColor || theme.colors.main.soft[70].primary};
           border: 2px solid
-            ${({ theme }) => color || theme.main.soft[50].primary};
+            ${({ theme }) => color || theme.colors.main.soft[50].primary};
         }
       `;
   }
