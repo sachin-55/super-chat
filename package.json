@@ -24,7 +24,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:css": "stylelint './src/**/*.(t|j)s'"
+    "lint:css": "stylelint './src/**/*.(t|j)s'",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
