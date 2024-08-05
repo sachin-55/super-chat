@@ -1,7 +1,8 @@
 import React from "react";
+import { HomepageStyled } from "./styles";
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <HomepageStyled>HomePage</HomepageStyled>;
 };
 
 export default HomePage;

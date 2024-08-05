@@ -19,7 +19,7 @@ export interface ITypographyProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const Typography = ({
-  color = "dark.black",
+  color = "main.textColor",
   fontFamily = "inconsolata",
   inline = false,
   size = "normal",

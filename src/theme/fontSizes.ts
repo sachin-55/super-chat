@@ -7,7 +7,7 @@ export const fontSize = {
   lTitle: "18px",
   heading: "20px",
   lHeading: "24px",
-  xlDisplay: "32px",
+  xlHeading: "32px",
 } as const;
 
 export type FontSizeType = typeof fontSize;
