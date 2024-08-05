@@ -32,41 +32,6 @@ const GlobalStyles = styled.createGlobalStyle`
 
     ${scrollCss};
   }
-  h1 {
-    color: ${({ theme }) => theme?.main?.textColor};
-    font-size: ${({ theme }) => theme?.fontSize?.h1};
-    font-weight: ${({ theme }) => theme?.fontWeights?.bold};
-  }
-  h2 {
-    color: ${({ theme }) => theme?.main?.textColor};
-    font-size: ${({ theme }) => theme?.fontSize?.h2};
-    font-weight: ${({ theme }) => theme?.fontWeights?.bold};
-  }
-  h3 {
-    color: ${({ theme }) => theme?.main?.textColor};
-    font-size: ${({ theme }) => theme?.fontSize?.h3};
-    font-weight: ${({ theme }) => theme?.fontWeights?.bold};
-  }
-  h4 {
-    color: ${({ theme }) => theme?.main?.textColor};
-    font-size: ${({ theme }) => theme?.fontSize?.h4};
-    font-weight: ${({ theme }) => theme?.fontWeights?.bold};
-  }
-  h5 {
-    color: ${({ theme }) => theme?.main?.textColor};
-    font-size: ${({ theme }) => theme?.fontSize?.h5};
-    font-weight: ${({ theme }) => theme?.fontWeights?.bold};
-  }
-  h6 {
-    color: ${({ theme }) => theme?.main?.textColor};
-    font-size: ${({ theme }) => theme?.fontSize?.h6};
-    font-weight: ${({ theme }) => theme?.fontWeights?.bold};
-  }
-  caption {
-    color: ${({ theme }) => theme?.main?.textColor};
-    font-size: ${({ theme }) => theme?.fontSize?.caption};
-    font-weight: ${({ theme }) => theme?.fontWeights?.light};
-  }
 `;
 
 export default GlobalStyles;

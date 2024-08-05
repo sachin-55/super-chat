@@ -87,27 +87,27 @@ type ButtonOptionType = {
 const buttonSizes: Record<ButtonSizeType, ButtonOptionType> = {
   xsm: {
     height: "30px",
-    fontSize: "g_smallNormal",
+    fontSize: "normal",
     padding: "6px 16px",
   },
   sm: {
     height: "36px",
-    fontSize: "h_normal",
+    fontSize: "title",
     padding: "8px 20px",
   },
   md: {
     height: "42px",
-    fontSize: "i_largeNormal",
+    fontSize: "lTitle",
     padding: "10px 24px",
   },
   lg: {
     height: "48px",
-    fontSize: "j_title",
+    fontSize: "lTitle",
     padding: "12px 28px",
   },
   xl: {
     height: "54px",
-    fontSize: "m_subheading",
+    fontSize: "heading",
     padding: "14px 32px",
   },
 };
@@ -146,7 +146,7 @@ const ButtonStyled = styled.button<
       ? theme?.fontSize[$fontSize]
       : $size
       ? theme?.fontSize[buttonSizes[$size].fontSize]
-      : theme?.fontSize.h_normal};
+      : theme?.fontSize.normal};
 
   font-family: ${({ theme, $fontFamily }) =>
     $fontFamily
