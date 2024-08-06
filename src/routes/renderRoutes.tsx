@@ -18,12 +18,12 @@ const renderNestedRoutes = (route: any) => {
 const router = createBrowserRouter(
   routesObjects.map(
     (route) => {
-      if (route?.path === "*") {
-        return {
-          path: route?.path,
-          element: <route.component />,
-        };
-      }
+      // if (route?.path === "*") {
+      //   return {
+      //     path: route?.path,
+      //     element: <route.component />,
+      //   };
+      // }
       return {
         path: route?.path,
         errorElement: <ErrorBoundary />,
