@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 import { routesObjects } from ".";
 import { ErrorBoundary } from "../components";
-import { basename } from "path";
 
 const renderNestedRoutes = (route: any) => {
   if ("children" in route && Array.isArray(route.children)) {
@@ -53,7 +52,7 @@ const router = createBrowserRouter(
       };
     },
     {
-      basename: process.env.REACT_APP_BASENAME,
+      basename: process.env.REACT_APP_BASENAME || "/super-chat",
     }
   )
 );
