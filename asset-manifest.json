@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/super-chat/static/js/main.25ea9811.js",
+    "main.js": "/super-chat/static/js/main.9abcd047.js",
     "static/js/787.38860b17.chunk.js": "/super-chat/static/js/787.38860b17.chunk.js",
     "index.html": "/super-chat/index.html",
-    "main.25ea9811.js.map": "/super-chat/static/js/main.25ea9811.js.map",
+    "main.9abcd047.js.map": "/super-chat/static/js/main.9abcd047.js.map",
     "787.38860b17.chunk.js.map": "/super-chat/static/js/787.38860b17.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.25ea9811.js"
+    "static/js/main.9abcd047.js"
   ]
 }
