@@ -13,12 +13,7 @@ const ProtectedRoute: React.FC<React.PropsWithChildren<Props>> = ({
   restrictTo = [],
   role = [],
 }) => {
-  return (
-    <>
-      <div>Protected</div>
-      {children ? children : <Outlet />}
-    </>
-  );
+  return <>{children ? children : <Outlet />}</>;
 };
 
 export default ProtectedRoute;

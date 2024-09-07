@@ -17,17 +17,6 @@ import {
 
 const routes: IRoutes[] = [
   {
-    id: 1,
-    path: NOT_FOUND_ROUTE,
-    component: NotFoundPage,
-    layout: OnlyHeaderLayout,
-    isProtected: false,
-    icon: "notFound",
-    name: "Not Found",
-    onSidebar: false,
-    sidebarOrder: null,
-  },
-  {
     id: 100,
     path: LANDING_ROUTE,
     component: LandingPage,
@@ -85,6 +74,17 @@ const routes: IRoutes[] = [
     name: "Dashboard",
     onSidebar: true,
     sidebarOrder: 2,
+  },
+  {
+    id: 999999_99999,
+    path: NOT_FOUND_ROUTE,
+    component: NotFoundPage,
+    layout: OnlyHeaderLayout,
+    isProtected: false,
+    icon: "notFound",
+    name: "Not Found",
+    onSidebar: false,
+    sidebarOrder: null,
   },
 ];
 export default routes;

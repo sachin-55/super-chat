@@ -1,15 +1,25 @@
 import { Button, Card, Flex, Input, Typography } from "../../components";
+import { HOME_ROUTE, LOGIN_ROUTE } from "../../routes/routes";
 import { RegisterPageStyled } from "./styles";
+import { LinkStyled } from "../../style/reusableStyle";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    navigate(HOME_ROUTE);
+  };
+
   return (
     <RegisterPageStyled>
       <Typography size="heading" fontWeight="bold">
         Welcome to Super Chat
       </Typography>
       <Typography className="desc" size="lTitle" margin="0px 0px 20px ">
-        Do you have anything to share to your friends and looking for a platform
-        here I'm here. Stop searching let's join together and chit-chat there.
+        Have something to share with your friends? Looking for the perfect
+        platform to connect and chat? Look no further — join us now and start
+        the conversation!
       </Typography>
       <Card>
         <Typography size="lHeading" fontWeight="medium">
@@ -24,12 +34,16 @@ const RegisterPage = () => {
           <Input placeholder="What's your name?" />
           <Input placeholder="Enter your email." />
           <Input placeholder="Choose username for public." />
-          <Input
-            placeholder="Create secret password to enter."
-            type="password"
-          />
+          <Input placeholder="Create your secret password." type="password" />
           <Input placeholder="Re-enter password." type="password" />
-          <Button variant="outline">Join the Gossips</Button>
+          <Button variant="outline" onClick={handleRegister}>
+            Join the Gossips
+          </Button>
+        </Flex>
+        <Flex justifyContent="center">
+          <Typography size="lTitle">
+            I've join already. <LinkStyled to={LOGIN_ROUTE}>Get In</LinkStyled>
+          </Typography>
         </Flex>
       </Card>
     </RegisterPageStyled>

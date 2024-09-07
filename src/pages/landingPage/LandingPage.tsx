@@ -18,11 +18,11 @@ const LandingPage = () => {
     <LandingPageStyled>
       <h2>Welcome to Super Chat</h2>
       <p>
-        Chat with your all hearts and share your feelings and thoughts with
-        friends.
+        Dive into conversations with all your heart and share your thoughts and
+        feelings with friends.
       </p>
 
-      <p>Before begining an adventure, let's join the adventure.</p>
+      <p>Before starting your adventure, let's get ready for the journey!</p>
 
       <Button variant="outline" onClick={handleLogin}>
         Login

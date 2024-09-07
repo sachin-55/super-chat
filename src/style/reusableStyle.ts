@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 // Pseudo classes for scrollbar
@@ -130,4 +131,10 @@ export const InfoRowStyled = styled.div<{
       font-weight: 600;
     }
   }
+`;
+
+export const LinkStyled = styled(Link)`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.main.primary};
+  font-weight: 600;
 `;
