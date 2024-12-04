@@ -30,8 +30,20 @@ export const UserInfoStyled = styled.div`
 
 export const ConversationListStyled = styled.div`
   background-color: #fff;
-  height: calc(100% - 60px);
-  overflow-y: auto;
+  height: 100%;
+
+  & .list-container {
+    height: calc(100% - 50px);
+    overflow-y: auto;
+  }
+
+  & .title {
+    border-bottom: 1px solid #dbdbdb;
+    position: sticky;
+    top: 0px;
+    background-color: #fff;
+    z-index: 10;
+  }
 `;
 
 export const ConversationWindowStyled = styled.div`
@@ -58,4 +70,20 @@ export const ConversationWindowStyled = styled.div`
   }
 `;
 
-export const IndividualConversationStyled = styled.div``;
+export const IndividualConversationStyled = styled.div`
+  padding: 20px 10px;
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.main.highlight};
+
+  &:hover {
+    background-color: #dbdbdb;
+  }
+  &.active {
+    background-color: ${({ theme }) => theme.colors.main?.primary};
+    & p {
+      color: #fff;
+    }
+  }
+`;

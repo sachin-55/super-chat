@@ -31,6 +31,7 @@ const AvatarStyled = styled.div<{ $size: SizeType }>`
   width: ${({ $size }) => getSizes($size)};
   border-radius: 50%;
   overflow: hidden;
+  flex-shrink: 0;
 `;
 
 export default AvatarStyled;
