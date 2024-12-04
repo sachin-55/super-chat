@@ -27,7 +27,7 @@
     "eject": "react-scripts eject",
     "lint:css": "stylelint './src/**/*.(t|j)s'",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": " gh-pages -d build "
   },
   "eslintConfig": {
     "extends": [

@@ -52,7 +52,7 @@ const router = createBrowserRouter(
       };
     },
     {
-      basename: process.env.REACT_APP_BASENAME || "/super-chat",
+      basename: process.env.REACT_APP_BASENAME,
     }
   )
 );

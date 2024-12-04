@@ -10,7 +10,7 @@ const NotFound = () => {
       style={{ height: "100vh" }}
     >
       <Typography color="main.danger" size="xlHeading" fontWeight="black">
-        Not Found
+        Not Found (123456789)
       </Typography>
       <Typography size="lHeading" fontFamily="roboto" color="main.hard.caution">
         UFF...
