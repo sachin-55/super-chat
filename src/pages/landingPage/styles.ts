@@ -8,7 +8,7 @@ export const LandingPageStyled = styled.div`
   gap: 50px;
   align-items: center;
   justify-content: center;
-
+  position: relative;
   & h2 {
     font-size: 3em;
     text-align: center;

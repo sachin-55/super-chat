@@ -11,3 +11,4 @@ export { default as Typography } from "./Typography";
 export { default as Divider } from "./Divider";
 export { default as Image } from "./Image";
 export { default as Avatar } from "./Avatar";
+export { default as MouseTrackerRain } from "./MouseTrackerRain";
