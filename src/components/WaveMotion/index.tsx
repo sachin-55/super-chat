@@ -47,15 +47,20 @@ const WaveMotion = () => {
   }) => {
     const waves = [];
 
-    for (let i = 0; i < 10; i++) {
+    let amplitude = 50 + Math.random() * 60;
+    let tamp = amplitude;
+    for (let i = 0; i < 7; i++) {
       waves.push({
-        angle: Math.random() * Math.PI * 2,
-        frequency: 0.01 + Math.random() * 0.015,
-        amplitude: canvasHeight * 0.05 + Math.random() * (canvasHeight * 0.15),
-        speed: 0.02 + Math.random() * 0.1,
-        yPosition: canvasHeight * 0.2 + Math.random() * (canvasHeight * 0.8),
+        angle: Math.PI * 2,
+        frequency: 0.004 + Math.random() * 0.006,
+        amplitude,
+        speed: 0.02 + Math.random() * 0.005,
+        // yPosition: canvasHeight * 0.2 + Math.random() * (canvasHeight * 0.8),
+        yPosition: -(tamp + amplitude * 3 + i * 100),
         direction: Math.random() > 0.5 ? 1 : -1,
       });
+      amplitude = 50 + Math.random() * 60;
+      tamp += amplitude * 2;
     }
 
     wavesRef.current = waves;
@@ -67,12 +72,48 @@ const WaveMotion = () => {
     canvasHeight: number
   ) => {
     const waves = wavesRef.current;
+    // Overlay the canvas with a semi-transparent layer for a trailing effect
+    ctx.fillStyle = "rgba(20,50,200, 0.01)"; // Semi-transparent overlay
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
     // Loop through each wave and render it
     waves.forEach((wave, index) => {
-      ctx.beginPath();
-      ctx.strokeStyle = `hsl(${(index * 36) % 360}, 70%, 50%)`; // Vary the color of each wave
+      const fadeStart = canvasHeight * 0.5; // Start fading at 70% of canvas height
+      const fadeEnd = canvasHeight + wave.amplitude; // Fully faded at the bottom of the canvas
 
+      // Calculate alpha value based on yPosition
+      const alpha =
+        wave.yPosition > fadeStart
+          ? Math.max(
+              0,
+              1 - (wave.yPosition - fadeStart) / (fadeEnd - fadeStart)
+            )
+          : 1;
+
+      ctx.globalAlpha = alpha; // Apply transparency based on wave's yPosition
+      ctx.beginPath();
+      // Gradient color for the tail effect
+      const gradient = ctx.createLinearGradient(
+        0,
+        0,
+        canvasWidth,
+        canvasHeight
+      );
+      gradient.addColorStop(
+        0,
+        `#00fa` // Start with high opacity
+      );
+
+      gradient.addColorStop(
+        0.4,
+        `#77fa` // End with zero opacity
+      );
+      gradient.addColorStop(
+        1,
+        `#aafa` // End with zero opacity
+      );
+
+      ctx.strokeStyle = gradient;
       ctx.lineWidth = 2;
 
       for (let x = 0; x < canvasWidth; x++) {
@@ -91,13 +132,19 @@ const WaveMotion = () => {
         }
       }
       ctx.stroke();
-      wave.yPosition += 1;
-      if (wave.yPosition > canvasHeight) {
-        wave.yPosition = -wave.amplitude;
+      wave.yPosition += 0.5;
+      if (wave.yPosition - wave.amplitude > canvasHeight) {
+        const prevIndex = index === 0 ? waves.length - 1 : index - 1;
+        const prevPos =
+          waves[prevIndex].yPosition < -(wave.amplitude * 2)
+            ? Math.abs(waves[prevIndex].yPosition)
+            : wave.amplitude * 2;
+        wave.yPosition = -(prevPos + wave.amplitude * 3 + index * 100);
       }
       // Update the wave's angle for the next frame
-      wave.angle += wave.speed;
+      wave.angle += 0.005;
     });
+    ctx.globalAlpha = 1;
   };
 
   useEffect(() => {
@@ -117,8 +164,8 @@ const WaveMotion = () => {
     let animationFrameId: number;
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before every frame
-      // ctx.globalAlpha = 0.1; // Set transparency for all waves
+      // ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before every frame
+      // ctx.globalAlpha = 0.01; // Set transparency for all waves
       updateWave(ctx, canvas.width, canvas.height);
       animationFrameId = requestAnimationFrame(animate);
     };
