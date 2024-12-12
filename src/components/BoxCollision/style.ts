@@ -8,6 +8,4 @@ export const BoxCollisionContainerStyled = styled.div`
   left: 0;
   background-color: rgba(23, 28, 56, 0.9);
   z-index: -1;
-  & canvas {
-  }
 `;

@@ -21,7 +21,10 @@ const MouseTrackerRain = () => {
   });
 
   const [isMouseMoving, setIsMouseMoving] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 }); // Store mouse position
+  const [mousePosition, setMousePosition] = useState({
+    x: containerDimensions.width / 2,
+    y: containerDimensions.height / 2,
+  }); // Store mouse position
 
   const rainDropsRef = useRef<RainDrop[]>([]); // useRef to hold the rain drops without triggering re-renders
   const mouseMoveTimerRef = useRef<NodeJS.Timeout | null>(null); // to store the timeout ID
@@ -98,6 +101,7 @@ const MouseTrackerRain = () => {
         const { width, height } = containerRef.current.getBoundingClientRect();
         generateRainDrops(width, height);
         setContainerDimensions({ width, height });
+        setMousePosition({ x: width / 2, y: height / 2 });
       }
     };
 
@@ -162,6 +166,7 @@ const MouseTrackerRain = () => {
     };
 
     window.addEventListener("mousemove", handleMouseOver);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseOver);
     };

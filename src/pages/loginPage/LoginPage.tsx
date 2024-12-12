@@ -48,7 +48,7 @@ const LoginPage = () => {
           </Button>
         </Flex>
         <Flex justifyContent="center">
-          <Typography size="lTitle">
+          <Typography size="lTitle" color="main.hard.warning">
             I've not join yet.{" "}
             <LinkStyled to={SIGNUP_ROUTE}>Join the Gossips</LinkStyled>
           </Typography>
@@ -65,7 +65,7 @@ const LoginPageStyled = styled.div`
   ${flexCenter()};
   flex-direction: column;
   margin: 0 auto;
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 40px);
   position: relative;
   & .desc {
     text-align: center;

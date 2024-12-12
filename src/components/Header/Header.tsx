@@ -1,12 +1,18 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { LANDING_ROUTE } from "../../routes/routes";
 
 type Props = {};
 
 const Header = (props: Props) => {
+  const navigate = useNavigate();
+  const handleLogoAction = () => {
+    navigate(LANDING_ROUTE);
+  };
+
   return (
     <HeaderStyled>
-      <LogoStyled>Super Chat</LogoStyled>
+      <LogoStyled onClick={handleLogoAction}>Super Chat</LogoStyled>
     </HeaderStyled>
   );
 };

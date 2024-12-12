@@ -1,4 +1,11 @@
-import { Button, Card, Flex, Input, Typography } from "../../components";
+import {
+  Button,
+  Card,
+  Flex,
+  Input,
+  Typography,
+  WaveMotion,
+} from "../../components";
 import { HOME_ROUTE, LOGIN_ROUTE } from "../../routes/routes";
 import { RegisterPageStyled } from "./styles";
 import { LinkStyled } from "../../style/reusableStyle";
@@ -13,16 +20,21 @@ const RegisterPage = () => {
 
   return (
     <RegisterPageStyled>
-      <Typography size="heading" fontWeight="bold">
+      <Typography size="heading" fontWeight="bold" color="light.snow">
         Welcome to Super Chat
       </Typography>
-      <Typography className="desc" size="lTitle" margin="0px 0px 20px ">
+      <Typography
+        className="desc"
+        size="lTitle"
+        margin="0px 0px 20px "
+        color="light.snow"
+      >
         Have something to share with your friends? Looking for the perfect
         platform to connect and chat? Look no further — join us now and start
         the conversation!
       </Typography>
       <Card>
-        <Typography size="lHeading" fontWeight="medium">
+        <Typography color="light.snow" size="lHeading" fontWeight="medium">
           Let's get started & chit-chat...
         </Typography>
         <Flex
@@ -36,16 +48,21 @@ const RegisterPage = () => {
           <Input placeholder="Choose username for public." />
           <Input placeholder="Create your secret password." type="password" />
           <Input placeholder="Re-enter password." type="password" />
-          <Button variant="outline" onClick={handleRegister}>
+          <Button
+            variant="outline"
+            color="main.hard.primary"
+            onClick={handleRegister}
+          >
             Join the Gossips
           </Button>
         </Flex>
         <Flex justifyContent="center">
-          <Typography size="lTitle">
+          <Typography size="lTitle" color="light.snow">
             I've join already. <LinkStyled to={LOGIN_ROUTE}>Get In</LinkStyled>
           </Typography>
         </Flex>
       </Card>
+      <WaveMotion />
     </RegisterPageStyled>
   );
 };

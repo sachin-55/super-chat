@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { flexCenter } from "../../style/reusableStyle";
 
 export const RegisterPageStyled = styled.div`
+  position: relative;
   ${flexCenter()};
   flex-direction: column;
-  max-width: 700px;
-  margin: 0 auto;
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 40px);
 
   & .desc {
     text-align: center;
+    max-width: 700px;
   }
 `;

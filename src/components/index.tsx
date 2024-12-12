@@ -13,3 +13,4 @@ export { default as Image } from "./Image";
 export { default as Avatar } from "./Avatar";
 export { default as MouseTrackerRain } from "./MouseTrackerRain";
 export { default as BoxCollision } from "./BoxCollision";
+export { default as WaveMotion } from "./WaveMotion";
