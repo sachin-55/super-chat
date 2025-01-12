@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HomepageStyled = styled.div`
   display: flex;
-  height: calc(100vh - 40px);
+  min-height: calc(100vh - 0px);
 `;
 
 export const UserContainerStyled = styled.div`
@@ -33,7 +33,7 @@ export const ConversationListStyled = styled.div`
   height: 100%;
 
   & .list-container {
-    height: calc(100% - 50px);
+    height: calc(100% - 60px);
     overflow-y: auto;
   }
 
@@ -55,7 +55,7 @@ export const ConversationWindowStyled = styled.div`
     padding: 8px 15px;
     box-shadow: 1px 0px 2px 1px rgba(0, 0, 0, 0.2);
     background-color: #fff;
-
+    height: 60px;
     & .fullname,
     & .username,
     & .status {

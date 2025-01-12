@@ -1,4 +1,4 @@
-import { MainLayout, OnlyHeaderLayout } from "../components/layouts";
+import { MainLayout, NoLayout, OnlyHeaderLayout } from "../layouts";
 import {
   HomePage,
   LandingPage,
@@ -20,7 +20,7 @@ const routes: IRoutes[] = [
     id: 100,
     path: LANDING_ROUTE,
     component: LandingPage,
-    layout: OnlyHeaderLayout,
+    layout: NoLayout,
     isProtected: false,
     icon: "landing",
     name: "Landing",
@@ -35,7 +35,7 @@ const routes: IRoutes[] = [
     id: 200,
     path: HOME_ROUTE,
     component: HomePage,
-    layout: OnlyHeaderLayout,
+    layout: NoLayout,
     isProtected: true,
     icon: "home",
     name: "Home",
@@ -79,7 +79,7 @@ const routes: IRoutes[] = [
     id: 999999_99999,
     path: NOT_FOUND_ROUTE,
     component: NotFoundPage,
-    layout: OnlyHeaderLayout,
+    layout: NoLayout,
     isProtected: false,
     icon: "notFound",
     name: "Not Found",

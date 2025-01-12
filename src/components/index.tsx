@@ -1,7 +1,6 @@
 export { Header } from "./Header";
 export { ErrorBoundary } from "./ErrorBoundary";
 export { ProtectedRoute } from "./ProtectedRoute";
-export { MainLayout, NoLayout, OnlyHeaderLayout } from "./layouts";
 export { Button } from "./Button";
 export { Card } from "./Card";
 export { Input } from "./Input";
@@ -14,3 +13,4 @@ export { default as Avatar } from "./Avatar";
 export { default as MouseTrackerRain } from "./MouseTrackerRain";
 export { default as BoxCollision } from "./BoxCollision";
 export { default as WaveMotion } from "./WaveMotion";
+export { default as Logo } from "./Logo";

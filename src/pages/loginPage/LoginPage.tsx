@@ -65,7 +65,7 @@ const LoginPageStyled = styled.div`
   ${flexCenter()};
   flex-direction: column;
   margin: 0 auto;
-  min-height: calc(100vh - 40px);
+  min-height: calc(100vh - 0px);
   position: relative;
   & .desc {
     text-align: center;
