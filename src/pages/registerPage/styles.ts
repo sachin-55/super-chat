@@ -5,8 +5,8 @@ export const RegisterPageStyled = styled.div`
   position: relative;
   ${flexCenter()};
   flex-direction: column;
-  min-height: calc(100vh - 0px);
-
+  height: calc(100vh - 42px);
+  overflow: hidden;
   & .desc {
     text-align: center;
     max-width: 700px;

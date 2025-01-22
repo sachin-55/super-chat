@@ -16,15 +16,15 @@ const LandingPage = () => {
 
   return (
     <LandingPageStyled>
-      <Typography color="light.white" size="xlHeading" fontWeight="extrabold">
+      <Typography color="secondary" size="xlHeading" fontWeight="extrabold">
         Welcome to Super Chat
       </Typography>
-      <Typography color="light.whiteSmoke" fontWeight="medium" size="lTitle">
+      <Typography color="secondary" fontWeight="medium" size="lTitle">
         Dive into conversations with all your heart and share your thoughts and
         feelings with friends.
       </Typography>
 
-      <Typography color="light.whiteSmoke" fontWeight="medium" size="lTitle">
+      <Typography color="secondary" fontWeight="medium" size="lTitle">
         Before starting your adventure, let's get ready for the journey!
       </Typography>
 

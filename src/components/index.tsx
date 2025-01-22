@@ -14,3 +14,4 @@ export { default as MouseTrackerRain } from "./MouseTrackerRain";
 export { default as BoxCollision } from "./BoxCollision";
 export { default as WaveMotion } from "./WaveMotion";
 export { default as Logo } from "./Logo";
+export { default as Textarea } from "./Textarea";

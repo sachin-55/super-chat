@@ -30,10 +30,9 @@ export const UserInfoStyled = styled.div`
 
 export const ConversationListStyled = styled.div`
   background-color: #fff;
-  height: 100%;
 
   & .list-container {
-    height: calc(100% - 60px);
+    height: calc(100vh - 110px);
     overflow-y: auto;
   }
 
@@ -50,7 +49,10 @@ export const ConversationWindowStyled = styled.div`
   flex: 1;
   min-width: 400px;
   background-color: rgba(0, 0, 0, 0.07);
-
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   & .headings {
     padding: 8px 15px;
     box-shadow: 1px 0px 2px 1px rgba(0, 0, 0, 0.2);
@@ -75,13 +77,13 @@ export const IndividualConversationStyled = styled.div`
   display: flex;
   gap: 12px;
   cursor: pointer;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.main.highlight};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.highlight};
 
   &:hover {
     background-color: #dbdbdb;
   }
   &.active {
-    background-color: ${({ theme }) => theme.colors.main?.primary};
+    background-color: ${({ theme }) => theme.colors?.primary};
     & p {
       color: #fff;
     }

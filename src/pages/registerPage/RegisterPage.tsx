@@ -20,21 +20,21 @@ const RegisterPage = () => {
 
   return (
     <RegisterPageStyled>
-      <Typography size="heading" fontWeight="bold" color="light.snow">
+      <Typography size="heading" fontWeight="bold" color="text">
         Welcome to Super Chat
       </Typography>
       <Typography
         className="desc"
         size="lTitle"
         margin="0px 0px 20px "
-        color="light.snow"
+        color="text"
       >
         Have something to share with your friends? Looking for the perfect
         platform to connect and chat? Look no further — join us now and start
         the conversation!
       </Typography>
       <Card>
-        <Typography color="light.snow" size="lHeading" fontWeight="medium">
+        <Typography color="text" size="lHeading" fontWeight="medium">
           Let's get started & chit-chat...
         </Typography>
         <Flex
@@ -48,16 +48,12 @@ const RegisterPage = () => {
           <Input placeholder="Choose username for public." />
           <Input placeholder="Create your secret password." type="password" />
           <Input placeholder="Re-enter password." type="password" />
-          <Button
-            variant="outline"
-            color="main.hard.primary"
-            onClick={handleRegister}
-          >
+          <Button variant="outline" color="primary" onClick={handleRegister}>
             Join the Gossips
           </Button>
         </Flex>
         <Flex justifyContent="center">
-          <Typography size="lTitle" color="light.snow">
+          <Typography size="lTitle" color="text">
             I've join already. <LinkStyled to={LOGIN_ROUTE}>Get In</LinkStyled>
           </Typography>
         </Flex>

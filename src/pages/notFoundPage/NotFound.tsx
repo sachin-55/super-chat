@@ -11,13 +11,13 @@ const NotFound = () => {
       direction="column"
       style={{ height: "100vh" }}
     >
-      <Typography color="main.danger" size="xlHeading" fontWeight="black">
+      <Typography color="danger" size="xlHeading" fontWeight="black">
         Not Found
       </Typography>
-      <Typography size="lHeading" fontFamily="roboto" color="main.hard.caution">
+      <Typography size="lHeading" fontFamily="roboto" color="caution">
         {pathname}
       </Typography>
-      <Typography size="title" color="main.success">
+      <Typography size="title" color="success">
         This can be frustrating to not be able to get the right path.
       </Typography>
     </Flex>

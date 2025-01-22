@@ -1,5 +1,5 @@
 import { ThemeType } from "../../theme";
-import { NestedColorKeys } from "../../theme/colors";
+import { ColorsKeysType } from "../../theme/colors";
 
 export type SizeType = keyof ThemeType["fontSize"];
 export type FontWeightType = keyof ThemeType["fontWeights"];
@@ -12,7 +12,7 @@ export type StyleType = {
   $size: SizeType;
   $fontWeight: FontWeightType;
   $inline?: boolean;
-  $color: NestedColorKeys;
+  $color: ColorsKeysType;
   $margin?: string;
   $padding?: string;
 };

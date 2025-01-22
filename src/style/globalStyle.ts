@@ -13,8 +13,9 @@ const GlobalStyles = styled.createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    box-sizing: border-box;
+    box-sizing: border-box;
   }
-
   p,
   h1,
   h2,
@@ -26,7 +27,7 @@ const GlobalStyles = styled.createGlobalStyle`
   }
   body {
     background: ${({ theme }) => theme?.main?.background};
-    color: ${({ theme }) => theme?.main?.textColor};
+    color: ${({ theme }) => theme?.colors?.text};
     font-size: ${({ theme }) => theme?.fontSize?.normal};
     font-family: ${({ theme }) => theme?.fontFamily?.inconsolata}, monospace;
 

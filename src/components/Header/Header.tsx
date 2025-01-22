@@ -26,5 +26,5 @@ const HeaderStyled = styled.div`
   font-size: ${({ theme }) => theme.fontSize.heading};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   letter-spacing: 2px;
-  box-shadow: 0px 1px 5px 0px ${({ theme }) => theme.colors.main?.hard?.primary};
+  box-shadow: 0px 1px 5px 0px ${({ theme }) => theme.colors.primary};
 `;

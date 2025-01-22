@@ -24,7 +24,7 @@ export const scrollCss = css`
   }
 
   &::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.colors.dark.coolBlack};
+    background: ${({ theme }) => theme.colors.background};
   }
 
   &::-webkit-scrollbar-track-piece {
@@ -32,7 +32,7 @@ export const scrollCss = css`
 
   &::-webkit-scrollbar-thumb {
     border-radius: 3px;
-    background: ${({ theme }) => theme.colors.main.hard.highlight};
+    background: ${({ theme }) => theme.colors.highlight};
   }
 
   &::-webkit-scrollbar-corner {
@@ -91,50 +91,8 @@ export const hideAppearance = css`
   -webkit-appearance: none;
 `;
 
-export const VerticalSpaceStyled = styled.div<{ $space?: number }>`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: ${({ $space }) => ($space ? $space + "px" : "12px")};
-`;
-
-export const InfoRowStyled = styled.div<{
-  $direction?: "row" | "column";
-}>`
-  display: flex;
-  align-items: ${({ $direction }) =>
-    $direction === "column" ? "flex-start" : "flex-start"};
-  justify-content: flex-start;
-  flex-direction: ${({ $direction }) => $direction || "row"};
-  gap: ${({ $direction }) => ($direction === "column" ? "8px" : "12px")};
-
-  & .title {
-    flex-shrink: 0;
-    color: ${({ theme }) => theme.colors.main.dark};
-  }
-
-  & .value {
-    ${flexStart};
-    gap: 8px;
-    color: ${({ theme }) => theme.colors.main.textColor};
-    white-space: break-spaces;
-    flex: 1;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
-    // flex-direction: column;
-    gap: 4px;
-
-    .title {
-      font-weight: 600;
-    }
-  }
-`;
-
 export const LinkStyled = styled(Link)`
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.main.primary};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 600;
 `;

@@ -2,11 +2,11 @@ import React from "react";
 
 import TypographyStyled from "./style";
 import { AsType, FontFamilyType, FontWeightType, SizeType } from "./type";
-import { NestedColorKeys } from "../../theme/colors";
+import { ColorsKeysType } from "../../theme/colors";
 
 export interface ITypographyProps extends React.HTMLAttributes<HTMLElement> {
   fontFamily?: FontFamilyType;
-  color?: NestedColorKeys;
+  color?: ColorsKeysType;
   size?: SizeType;
   fontWeight?: FontWeightType;
   inline?: boolean;
@@ -19,7 +19,7 @@ export interface ITypographyProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const Typography = ({
-  color = "main.textColor",
+  color = "text",
   fontFamily = "inconsolata",
   inline = false,
   size = "normal",

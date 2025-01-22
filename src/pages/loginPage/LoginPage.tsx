@@ -18,21 +18,21 @@ const LoginPage = () => {
   };
   return (
     <LoginPageStyled>
-      <Typography size="heading" fontWeight="bold" color="light.light">
+      <Typography size="heading" fontWeight="bold" color="text">
         Welcome to Super Chat
       </Typography>
       <Typography
         className="desc"
         size="lTitle"
         margin="0px 0px 20px "
-        color="light.light"
+        color="text"
       >
         Looking to make new friends and chat? Join us and connect with others
         who are ready to share, chat, and have fun! Don't keep searching — come
         join the conversation now!
       </Typography>
       <Card>
-        <Typography size="lHeading" fontWeight="medium" color="light.light">
+        <Typography size="lHeading" fontWeight="medium" color="text">
           Let's begin to chit-chat...
         </Typography>
         <Flex
@@ -48,7 +48,7 @@ const LoginPage = () => {
           </Button>
         </Flex>
         <Flex justifyContent="center">
-          <Typography size="lTitle" color="main.hard.warning">
+          <Typography size="lTitle" color="warning">
             I've not join yet.{" "}
             <LinkStyled to={SIGNUP_ROUTE}>Join the Gossips</LinkStyled>
           </Typography>
@@ -65,7 +65,8 @@ const LoginPageStyled = styled.div`
   ${flexCenter()};
   flex-direction: column;
   margin: 0 auto;
-  min-height: calc(100vh - 0px);
+  height: calc(100vh - 42px);
+  overflow: hidden;
   position: relative;
   & .desc {
     text-align: center;

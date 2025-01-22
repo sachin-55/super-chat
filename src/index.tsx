@@ -5,16 +5,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { theme } from "./theme";
 import GlobalStyles from "./style/globalStyle";
+import { ColorsSchemeProvider } from "./context/ColorsScheme";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <App />
-    </ThemeProvider>
+    <ColorsSchemeProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <App />
+      </ThemeProvider>
+    </ColorsSchemeProvider>
   </React.StrictMode>
 );
 

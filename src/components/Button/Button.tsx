@@ -1,7 +1,7 @@
 import React from "react";
 import { css, styled } from "styled-components";
-import { NestedColorKeys, getColorValue } from "../../theme/colors";
 import { ThemeType } from "../../theme";
+import { ColorsKeysType } from "../../theme/colors";
 
 export type ButtonSizeType = "xsm" | "sm" | "md" | "lg" | "xl";
 
@@ -16,8 +16,8 @@ type VariantType =
 
 interface IButtonProps {
   variant?: VariantType;
-  color?: NestedColorKeys;
-  bgColor?: NestedColorKeys;
+  color?: ColorsKeysType;
+  bgColor?: ColorsKeysType;
   rounded?: boolean;
 
   width?: string;
@@ -131,7 +131,7 @@ const ButtonStyled = styled.button<
   align-items: center;
   justify-content: center;
   border-radius: ${({ rounded }) => (rounded ? "20px" : "0px")};
-  box-shadow: 0px 0px 3px 0px ${({ theme }) => theme?.dark?.dimGray};
+  box-shadow: 0px 0px 3px 0px ${({ theme }) => theme?.colors.border};
   cursor: pointer;
   transition: all 0.3s;
 
@@ -164,40 +164,41 @@ const ButtonStyled = styled.button<
 
 const getVariantWiseCss = (
   variant: VariantType | undefined,
-  color: NestedColorKeys | undefined,
-  bgColor: NestedColorKeys | undefined
+  color: ColorsKeysType | undefined,
+  bgColor: ColorsKeysType | undefined
 ) => {
   switch (variant) {
     case "solid":
       return css`
         border: 2px solid
           ${({ theme }) =>
-            getColorValue(color) || theme.colors.main.hard.primary};
+            color ? theme.colors?.[color] : theme.colors.border};
         background: ${({ theme }) =>
-          getColorValue(bgColor) || theme.colors.main.soft[60].primary};
+          bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         color: ${({ theme }) =>
-          getColorValue(color) || theme.colors.light.snow};
+          color ? theme.colors?.[color] : theme.colors.text};
         &:hover {
           background: ${({ theme }) =>
-            getColorValue(color) || theme.colors.light.snow};
+            color ? theme.colors?.[color] : theme.colors.highlight};
           border: 2px solid
             ${({ theme }) =>
-              getColorValue(color) || theme.colors.main.hard.primary};
+              color ? theme.colors?.[color] : theme.colors.accent};
           color: ${({ theme }) =>
-            getColorValue(bgColor) || theme.colors.main.hard.primary};
+            color ? theme.colors?.[color] : theme.colors.text};
         }
       `;
     case "ghost":
       return css`
         border: 2px solid
           ${({ theme }) =>
-            getColorValue(color) || theme.colors.main.hard.primary};
+            color ? theme.colors?.[color] : theme.colors.primary};
         background: transparent;
-        color: ${({ theme }) => getColorValue(color) || theme.dark?.charcoal};
+        color: ${({ theme }) =>
+          color ? theme.colors?.[color] : theme.colors.text};
         &:hover {
           border: 3px solid
             ${({ theme }) =>
-              getColorValue(color) || theme.colors.main.soft[50].primary};
+              color ? theme.colors?.[color] : theme.colors.border};
           font-weight: 600;
         }
       `;
@@ -205,21 +206,22 @@ const getVariantWiseCss = (
       return css`
         border: none;
         background: ${({ theme }) =>
-          getColorValue(bgColor) || theme.colors.main.soft[60].primary};
+          bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         color: ${({ theme }) =>
-          getColorValue(color) || theme.colors.light.snow};
+          color ? theme.colors?.[color] : theme.colors.text};
         &:hover {
           background: ${({ theme }) =>
-            getColorValue(color) || theme.colors.light.snow};
+            color ? theme.colors?.[color] : theme.colors.secondary};
           color: ${({ theme }) =>
-            getColorValue(bgColor) || theme.colors.main.hard.primary};
+            color ? theme.colors?.[color] : theme.colors.primary};
         }
       `;
     case "link":
       return css`
         border: none;
         background: transparent;
-        color: ${({ theme }) => getColorValue(color) || theme.dark?.charcoal};
+        color: ${({ theme }) =>
+          color ? theme.colors?.[color] : theme.colors.info};
         padding: 0px;
         min-width: auto;
         height: auto;
@@ -232,9 +234,9 @@ const getVariantWiseCss = (
       return css`
         border: none;
         background: ${({ theme }) =>
-          getColorValue(bgColor) || theme.colors.main.soft[60].primary};
+          bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         color: ${({ theme }) =>
-          getColorValue(color) || theme.colors.light.snow};
+          color ? theme.colors?.[color] : theme.colors.text};
         padding: 4px 12px;
         min-width: auto;
         height: auto;
@@ -242,29 +244,32 @@ const getVariantWiseCss = (
           background: none;
           border: 1px solid
             ${({ theme }) =>
-              getColorValue(color) || theme.colors.main.hard.primary};
+              color ? theme.colors?.[color] : theme.colors.primary};
           color: ${({ theme }) =>
-            getColorValue(bgColor) || theme.colors.main.hard.primary};
+            bgColor ? theme.colors?.[bgColor] : theme.colors.info};
         }
       `;
     case "outline":
       return css`
         border: 2px solid
           ${({ theme }) =>
-            getColorValue(color) || theme.colors.main.hard.primary};
+            color ? theme.colors?.[color] : theme.colors.primary};
+
         background: ${({ theme }) =>
-          getColorValue(bgColor) || theme.colors.light.snow};
+          bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
+
         color: ${({ theme }) =>
-          getColorValue(color) || theme.colors.main.hard?.primary};
+          color ? theme.colors?.[color] : theme.colors.primary};
         &:hover {
           border: 3px solid
             ${({ theme }) =>
-              getColorValue(bgColor) || theme.colors.main.soft[50].primary};
+              color ? theme.colors?.[color] : theme.colors.primary};
           font-weight: 600;
           color: ${({ theme }) =>
-            getColorValue(bgColor) || theme.colors.light.snow};
+            bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
+
           background: ${({ theme }) =>
-            getColorValue(color) || theme.colors.main.soft[50].primary};
+            color ? theme.colors?.[color] : theme.colors.primary};
         }
       `;
     case "unstyled":
@@ -272,7 +277,7 @@ const getVariantWiseCss = (
         border: none;
         background: none;
         color: ${({ theme }) =>
-          getColorValue(color) || theme.colors.main.hard?.primary};
+          color ? theme.colors?.[color] : theme.colors.primary};
         padding: 0px;
         min-width: auto;
         height: auto;
@@ -282,17 +287,18 @@ const getVariantWiseCss = (
       return css`
         border: 2px solid
           ${({ theme }) =>
-            getColorValue(color) || theme.colors.main.hard.primary};
+            color ? theme.colors?.[color] : theme.colors.primary};
+
         background: ${({ theme }) =>
-          getColorValue(bgColor) || theme.colors.main.soft[60].primary};
+          bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         color: ${({ theme }) =>
-          getColorValue(color) || theme.colors.light.snow};
+          color ? theme.colors?.[color] : theme.colors.primary};
         &:hover {
           background: ${({ theme }) =>
-            getColorValue(bgColor) || theme.colors.main.soft[70].primary};
+            bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
           border: 2px solid
             ${({ theme }) =>
-              getColorValue(color) || theme.colors.main.soft[50].primary};
+              color ? theme.colors?.[color] : theme.colors.primary};
         }
       `;
   }

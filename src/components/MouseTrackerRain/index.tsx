@@ -45,6 +45,37 @@ const MouseTrackerRain = () => {
     rainDropsRef.current = drops;
   };
 
+  const drawTriangle = (
+    ctx: CanvasRenderingContext2D,
+    circleCenter: { x: number; y: number },
+    diameter: number
+  ) => {
+    const height = diameter * 2; // Triangle height
+    const baseY = circleCenter.y + diameter / 2; // Base of the triangle
+
+    const vertexTop = { x: circleCenter.x, y: circleCenter.y - height - 2 };
+    const vertexLeft = {
+      x: circleCenter.x - diameter / 2,
+      y: baseY - diameter / 2,
+    };
+    const vertexRight = {
+      x: circleCenter.x + diameter / 2,
+      y: baseY - diameter / 2,
+    };
+
+    ctx.beginPath();
+
+    ctx.lineWidth = 1;
+    ctx.moveTo(vertexTop.x, vertexTop.y);
+    ctx.lineTo(vertexLeft.x, vertexLeft.y);
+    ctx.strokeStyle = "rgba(2, 19, 255, 0.5)"; // White circle with some transparency
+    ctx.stroke();
+    ctx.lineTo(vertexRight.x, vertexRight.y);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(61, 232, 244, 0.7)"; // Orange fill
+    ctx.fill();
+    ctx.lineWidth = 2;
+  };
   const drawCircle = (
     ctx: CanvasRenderingContext2D,
     mousePosition: { x: number; y: number }
@@ -77,9 +108,12 @@ const MouseTrackerRain = () => {
       const distance = Math.sqrt(dx * dx + dy * dy); // Calculate the distance from the mouse position
 
       if (distance <= 100) {
+        // Draw triangle for raindrops within the distance
+        drawTriangle(ctx, drop, (drop.width + 3) * 2);
+
         ctx.fillStyle = "rgba(61, 232, 244, 0.7)"; // Change color to yellow for raindrops inside the circle
         ctx.beginPath();
-        ctx.arc(drop.x, drop.y, drop.width + 3, 0, Math.PI * 2);
+        ctx.arc(drop.x, drop.y, drop.width + 3, 0, Math.PI);
         ctx.fill();
         ctx.strokeStyle = "rgba(2, 19, 255, 0.5)"; // White circle with some transparency
         ctx.lineWidth = 1;

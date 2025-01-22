@@ -29,12 +29,12 @@ export default Logo;
 
 const LogoStyled = styled.div<{ $size?: number; $isPointer?: boolean }>`
   color: #fff;
-  color: ${({ theme }) => theme.colors.main.hard.primary};
+  color: ${({ theme }) => theme.colors.primary};
   font-family: ${({ theme }) => theme.fontFamily.sansita};
   cursor: ${({ $isPointer }) => ($isPointer ? "pointer" : "default")};
   display: inline;
   font-size: ${({ $size }) => $size}px;
   &:hover {
-    text-shadow: 2px 2px 10px ${({ theme }) => theme.colors.main.hard.secondary};
+    text-shadow: 2px 2px 10px ${({ theme }) => theme.colors.secondary};
   }
 `;

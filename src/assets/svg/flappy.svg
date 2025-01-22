@@ -1,0 +1,33 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Body -->
+  <circle cx="100" cy="100" r="20" fill="orange" />
+
+  <!-- Left Wing -->
+  <path id="left-wing" d="M100 100 L70 70 L80 100 Z" fill="yellow">
+    <animateTransform 
+      attributeName="transform" 
+      attributeType="XML" 
+      type="rotate" 
+      from="-30 100 100" 
+      to="-60 100 100" 
+      dur="0.5s" 
+      repeatCount="indefinite" 
+      additive="sum"/>
+  </path>
+
+  <!-- Right Wing -->
+  <path id="right-wing" d="M100 100 L130 70 L120 100 Z" fill="yellow">
+    <animateTransform 
+      attributeName="transform" 
+      attributeType="XML" 
+      type="rotate" 
+      from="30 100 100" 
+      to="60 100 100" 
+      dur="0.5s" 
+      repeatCount="indefinite" 
+      additive="sum"/>
+  </path>
+
+  <!-- Eye -->
+  <circle cx="110" cy="95" r="3" fill="black" />
+</svg>

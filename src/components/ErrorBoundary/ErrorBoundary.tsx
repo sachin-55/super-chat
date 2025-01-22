@@ -1,7 +1,5 @@
-import React from "react";
 import { useRouteError } from "react-router-dom";
 import { styled } from "styled-components";
-import { Header } from "../Header";
 
 type Props = {};
 
@@ -19,7 +17,7 @@ const ErrorBoundary = (props: Props) => {
 export default ErrorBoundary;
 
 const ErrorBoundaryStyled = styled.div`
-  background: ${({ theme }) => theme?.colors.main.soft[90].danger};
+  background: ${({ theme }) => theme?.colors.danger};
   min-height: 100vh;
   display: flex;
   align-items: center;

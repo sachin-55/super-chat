@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { StyleType } from "./type";
-import { getColorValue } from "../../theme/colors";
 
 const TypographyStyled = styled.p<StyleType>`
-  color: ${({ theme, $color }) => getColorValue($color)};
+  color: ${({ theme, $color }) =>
+    $color ? theme.colors?.[$color] : theme.colors?.text};
   font-weight: ${({ theme, $fontWeight }) => theme.fontWeights[$fontWeight]};
   display: ${({ $inline }) => ($inline ? "inline-block" : "block")};
   font-size: ${({ theme, $size }) => theme.fontSize[$size]};

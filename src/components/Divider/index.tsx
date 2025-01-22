@@ -3,18 +3,20 @@ import styled from "styled-components";
 
 import { flexCenter } from "../../style/reusableStyle";
 import Typography from "../../components/Typography";
-import { NestedColorKeys, getColorValue } from "../../theme/colors";
+import { ColorsKeysType } from "../../theme/colors";
 
 const DividerWrapper = styled.div<{
   $orientation: string;
-  $bgColor?: NestedColorKeys;
+  $bgColor?: ColorsKeysType;
   $margin: string;
 }>`
   width: ${(props) => (props.$orientation === "vertical" ? "1px" : "100%")};
   height: ${(props) => (props.$orientation === "horizontal" ? "1px" : "auto")};
   max-height: 100%;
   background-color: ${(props) =>
-    getColorValue(props.$bgColor) || props.theme?.colors?.dark.dimGray};
+    props.$bgColor
+      ? props.theme.colors?.[props?.$bgColor]
+      : props.theme?.colors?.border};
   margin: ${(props) => props.$margin};
   ${flexCenter(0)} & .divider-text {
     text-align: center;
@@ -53,7 +55,7 @@ interface DividerProps {
   orientation?: "vertical" | "horizontal";
   style?: React.CSSProperties;
   textStyle?: React.CSSProperties;
-  bgColor?: NestedColorKeys;
+  bgColor?: ColorsKeysType;
   margin?: string;
   text?: string;
 }
