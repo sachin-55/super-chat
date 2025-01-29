@@ -9,7 +9,7 @@ type VariantType =
   | "solid"
   | "ghost"
   | "link"
-  | "tag"
+  | "pill"
   | "plain"
   | "outline"
   | "unstyled";
@@ -54,6 +54,8 @@ const Button: React.FC<
   margin,
   padding,
   size,
+  isLoading,
+  isDisabled,
   ...restProps
 }) => {
   return (
@@ -70,6 +72,8 @@ const Button: React.FC<
       $margin={margin}
       $padding={padding}
       $size={size}
+      $loading={isLoading}
+      $disabled={isDisabled}
       {...restProps}
     >
       {children}
@@ -80,35 +84,35 @@ const Button: React.FC<
 export default Button;
 
 type ButtonOptionType = {
-  height: string;
+  minHeight: string;
   fontSize: keyof ThemeType["fontSize"];
   padding: string;
 };
 const buttonSizes: Record<ButtonSizeType, ButtonOptionType> = {
   xsm: {
-    height: "30px",
+    minHeight: "24px",
     fontSize: "normal",
-    padding: "6px 16px",
+    padding: "4px 14px",
   },
   sm: {
-    height: "36px",
+    minHeight: "30px",
     fontSize: "title",
-    padding: "8px 20px",
+    padding: "6px 18px",
   },
   md: {
-    height: "42px",
+    minHeight: "40px",
     fontSize: "lTitle",
-    padding: "10px 24px",
+    padding: "8px 20px",
   },
   lg: {
-    height: "48px",
-    fontSize: "lTitle",
-    padding: "12px 28px",
+    minHeight: "46px",
+    fontSize: "heading",
+    padding: "10px 24px",
   },
   xl: {
-    height: "54px",
-    fontSize: "heading",
-    padding: "14px 32px",
+    minHeight: "52px",
+    fontSize: "lHeading",
+    padding: "12px 30px",
   },
 };
 
@@ -124,22 +128,25 @@ const ButtonStyled = styled.button<
     $fontFamily?: keyof ThemeType["fontFamily"];
 
     $size?: ButtonSizeType;
+
+    $disabled?: boolean;
+    $loading?: boolean;
   }
 >`
-  min-width: 100px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: ${({ rounded }) => (rounded ? "20px" : "0px")};
-  box-shadow: 0px 0px 3px 0px ${({ theme }) => theme?.colors.border};
-  cursor: pointer;
-  transition: all 0.3s;
+  border-radius: ${({ rounded }) => (rounded ? "24px" : "0px")};
 
-  ${({ variant, color, bgColor }) =>
-    getVariantWiseCss(variant, color, bgColor)};
+  cursor: ${({ $disabled, $loading }) =>
+    $loading ? "progress" : $disabled ? "not-allowed" : "pointer"};
+  transition: all 0.3s;
+  opacity: ${({ $disabled }) => ($disabled ? 0.7 : 1)};
 
   font-weight: ${({ theme, $fontWeight }) =>
-    $fontWeight ? theme?.fontWeights[$fontWeight] : theme?.fontWeights?.medium};
+    $fontWeight
+      ? theme?.fontWeights[$fontWeight]
+      : theme?.fontWeights?.regular};
 
   font-size: ${({ theme, $fontSize, $size }) =>
     $fontSize
@@ -155,11 +162,11 @@ const ButtonStyled = styled.button<
   margin: ${({ $margin }) => $margin};
   padding: ${({ $padding, $size }) =>
     $padding ? $padding : $size ? buttonSizes[$size].padding : "8px 20px"};
-  width: ${({ $width }) => $width};
-  height: ${({ $height, $size }) =>
-    $height ? $height : $size ? buttonSizes[$size].height : "40px"};
-  min-height: fit-content;
-  min-width: fit-content;
+  min-width: ${({ $width }) => $width || "fit-content"};
+  min-height: ${({ $height, $size }) =>
+    $height ? $height : $size ? buttonSizes[$size].minHeight : "fit-content"};
+  ${({ variant, color, bgColor }) =>
+    getVariantWiseCss(variant, color, bgColor)};
 `;
 
 const getVariantWiseCss = (
@@ -172,31 +179,31 @@ const getVariantWiseCss = (
       return css`
         border: 2px solid
           ${({ theme }) =>
-            color ? theme.colors?.[color] : theme.colors.border};
+            color ? theme.colors?.[color] : theme.colors.invertedText};
         background: ${({ theme }) =>
           bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         color: ${({ theme }) =>
-          color ? theme.colors?.[color] : theme.colors.text};
+          color ? theme.colors?.[color] : theme.colors.invertedText};
         &:hover {
           background: ${({ theme }) =>
-            color ? theme.colors?.[color] : theme.colors.highlight};
+            color ? theme.colors?.[color] : theme.colors.invertedText};
           border: 2px solid
             ${({ theme }) =>
-              color ? theme.colors?.[color] : theme.colors.accent};
+              bgColor ? theme.bgColors?.[bgColor] : theme.colors.primary};
           color: ${({ theme }) =>
-            color ? theme.colors?.[color] : theme.colors.text};
+            bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         }
       `;
     case "ghost":
       return css`
         border: 2px solid
           ${({ theme }) =>
-            color ? theme.colors?.[color] : theme.colors.primary};
+            color ? theme.colors?.[color] : theme.colors.transparent};
         background: transparent;
         color: ${({ theme }) =>
           color ? theme.colors?.[color] : theme.colors.text};
         &:hover {
-          border: 3px solid
+          border: 2px solid
             ${({ theme }) =>
               color ? theme.colors?.[color] : theme.colors.border};
           font-weight: 600;
@@ -208,10 +215,10 @@ const getVariantWiseCss = (
         background: ${({ theme }) =>
           bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         color: ${({ theme }) =>
-          color ? theme.colors?.[color] : theme.colors.text};
+          color ? theme.colors?.[color] : theme.colors.invertedText};
         &:hover {
           background: ${({ theme }) =>
-            color ? theme.colors?.[color] : theme.colors.secondary};
+            color ? theme.colors?.[color] : theme.colors.invertedText};
           color: ${({ theme }) =>
             color ? theme.colors?.[color] : theme.colors.primary};
         }
@@ -225,28 +232,28 @@ const getVariantWiseCss = (
         padding: 0px;
         min-width: auto;
         height: auto;
+        width: fit-content;
         box-shadow: none;
         &:hover {
           text-decoration: underline;
         }
       `;
-    case "tag":
+    case "pill":
       return css`
         border: none;
         background: ${({ theme }) =>
           bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         color: ${({ theme }) =>
-          color ? theme.colors?.[color] : theme.colors.text};
+          color ? theme.colors?.[color] : theme.colors.invertedText};
         padding: 4px 12px;
-        min-width: auto;
-        height: auto;
+        min-width: fit-content;
+        min-height: fit-content;
+        font-size: ${({ theme }) => theme.fontSize.caption};
         &:hover {
-          background: none;
-          border: 1px solid
-            ${({ theme }) =>
-              color ? theme.colors?.[color] : theme.colors.primary};
+          background: ${({ theme }) =>
+            color ? theme.colors?.[color] : theme.colors.invertedText};
           color: ${({ theme }) =>
-            bgColor ? theme.colors?.[bgColor] : theme.colors.info};
+            bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         }
       `;
     case "outline":
@@ -256,17 +263,16 @@ const getVariantWiseCss = (
             color ? theme.colors?.[color] : theme.colors.primary};
 
         background: ${({ theme }) =>
-          bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
+          bgColor ? theme.colors?.[bgColor] : theme.colors.transparent};
 
         color: ${({ theme }) =>
           color ? theme.colors?.[color] : theme.colors.primary};
         &:hover {
-          border: 3px solid
+          border: 2px solid
             ${({ theme }) =>
               color ? theme.colors?.[color] : theme.colors.primary};
-          font-weight: 600;
           color: ${({ theme }) =>
-            bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
+            bgColor ? theme.colors?.[bgColor] : theme.colors.invertedText};
 
           background: ${({ theme }) =>
             color ? theme.colors?.[color] : theme.colors.primary};
@@ -274,31 +280,39 @@ const getVariantWiseCss = (
       `;
     case "unstyled":
       return css`
+        all: initial;
         border: none;
         background: none;
-        color: ${({ theme }) =>
-          color ? theme.colors?.[color] : theme.colors.primary};
+        color: ${({ theme }) => (color ? theme.colors?.[color] : "inherit")};
         padding: 0px;
         min-width: auto;
         height: auto;
-        box-shadow: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        outline: none;
+        box-sizing: border-box;
+        max-width: fit-content;
+        font-family: inherit;
       `;
     default:
       return css`
         border: 2px solid
           ${({ theme }) =>
-            color ? theme.colors?.[color] : theme.colors.primary};
-
+            color ? theme.colors?.[color] : theme.colors.invertedText};
         background: ${({ theme }) =>
           bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         color: ${({ theme }) =>
-          color ? theme.colors?.[color] : theme.colors.primary};
+          color ? theme.colors?.[color] : theme.colors.invertedText};
         &:hover {
           background: ${({ theme }) =>
-            bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
+            color ? theme.colors?.[color] : theme.colors.invertedText};
           border: 2px solid
             ${({ theme }) =>
-              color ? theme.colors?.[color] : theme.colors.primary};
+              bgColor ? theme.bgColors?.[bgColor] : theme.colors.primary};
+          color: ${({ theme }) =>
+            bgColor ? theme.colors?.[bgColor] : theme.colors.primary};
         }
       `;
   }

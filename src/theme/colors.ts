@@ -10,8 +10,10 @@ export type ColorsType = {
   danger: string;
   background: string;
   text: string;
+  invertedText: string;
   disabled: string;
   border: string;
+  transparent: string;
 };
 export type ColorsKeysType = keyof ColorsType;
 
@@ -30,8 +32,10 @@ export const main: ColorsType = {
   info: "#4069E1",
   background: "#FFF5EE",
   text: "#1b1b1b",
+  invertedText: "#ececec",
   disabled: "#696969",
   border: "#dbdbdb",
+  transparent: "transparent",
 };
 
 export const secondary: ColorsType = {
@@ -46,8 +50,10 @@ export const secondary: ColorsType = {
   info: "#314E8A",
   background: "#fdfdfd",
   text: "#333333",
+  invertedText: "#fefefe",
   disabled: "#696969",
   border: "#dbdbdb",
+  transparent: "transparent",
 } as const;
 
 // type Join<K, P> = K extends string | number
