@@ -1,6 +1,7 @@
 import React from "react";
 import { ConversationListStyled, IndividualConversationStyled } from "./styles";
 import { Avatar, Typography } from "../../components";
+import { truncateText } from "../../utils/textHelpers";
 
 type Props = {};
 
@@ -50,7 +51,7 @@ const IndividualConversation = () => {
           Fullname/Nickname
         </Typography>
         <Typography size="caption" fontWeight="medium">
-          Last message in a single truncated formatted
+          {truncateText("Last message in a single truncated formatted", 44)}
         </Typography>
       </div>
     </IndividualConversationStyled>

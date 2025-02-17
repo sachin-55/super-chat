@@ -1,3 +1,5 @@
+import { colors } from "../subscribers/colorSubscribers";
+
 export type ColorsType = {
   primary: string;
   accent: string;
@@ -55,6 +57,30 @@ export const secondary: ColorsType = {
   border: "#dbdbdb",
   transparent: "transparent",
 } as const;
+
+export const addOpacityToColor = (
+  color: ColorsKeysType,
+  opacity: number
+): string => {
+  const hex = colors?.[color];
+  if (hex) {
+    return addOpacityToHex(hex, opacity);
+  }
+  return "#fff";
+};
+
+export const addOpacityToHex = (hex: string, opacity: number): string => {
+  // Ensure the hex starts with a '#' and remove it for processing
+  const sanitizedHex = hex.startsWith("#") ? hex.slice(1) : hex;
+
+  // Convert opacity from 0-100 to 0-255 (which is 00-FF in hex)
+  const alpha = Math.round((opacity / 100) * 255)
+    .toString(16)
+    .padStart(2, "0"); // Ensure it's 2 characters long
+
+  // Return the hex value with the added alpha
+  return `#${sanitizedHex}${alpha}`;
+};
 
 // type Join<K, P> = K extends string | number
 //   ? P extends string | number
