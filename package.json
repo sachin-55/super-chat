@@ -28,7 +28,7 @@
     "eject": "react-scripts eject",
     "lint:css": "stylelint './src/**/*.(t|j)s'",
     "predeploy": "yarn build",
-    "deploy": " gh-pages -d build "
+    "deploy": "gh-pages -d build "
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +51,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/styled-components": "^5.1.26",
+    "gh-pages": "^6.3.0",
     "postcss-styled-syntax": "^0.4.0",
     "stylelint": "^15.10.2",
     "stylelint-config-standard": "^34.0.0"
